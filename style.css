@@ -28,9 +28,12 @@ body {
 .button-bar {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    border-bottom: 1px solid white;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
-button {
+.add-book {
     cursor: pointer;
     margin: 0.5rem;
     width: 10rem;
@@ -41,7 +44,33 @@ button {
     border-radius: 1rem;
 }
 
-button:hover {
+.add-book:hover {
     background-color: white;
     color: black
+}
+
+.book-form {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    padding: 1rem;
+    background-color: grey;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(1rem, 1fr));
+    grid-template-rows: repeat(8, minmax(1rem, 1fr));
+}
+
+.close-button{
+    background-color: transparent;
+    border: none;
+}
+
+.close-button > img {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+}
+
+.close-wrapper{
+    align-self: center;
+    justify-self: center;
 }
