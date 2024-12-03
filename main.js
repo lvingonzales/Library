@@ -61,8 +61,6 @@ function Book(id, name, author, year, genre, description) {
 function addBookToLibrary () {
     MY_LIBRARY[0].printCoverText();
     coverDiv.classList.add ("white-font", "book-cover");
-    //coverDiv.innerText = MY_LIBRARY[0].printCoverText();
-
     BOOKSHELF.appendChild(coverDiv);
 }
 
