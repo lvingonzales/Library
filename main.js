@@ -4,12 +4,15 @@ const CONTAINER = document.querySelector(".container");
 const BOOK_FORM = document.querySelector(".book-form");
 const ADD_BOOK = document.querySelector(".add-book");
 const CLOSE_BUTTONS = document.querySelectorAll(".close-button");
+const SUBMIT_BOOK = document.querySelector("#submit-button")
 
 const MY_LIBRARY = [];
 
 function initialize() {
     //BOOK_FORM.style.display = "none";
 
+    SUBMIT_BOOK.addEventListener("click", submitBtnClick, false);
+    
     ADD_BOOK.addEventListener("click", () => {
         BOOK_FORM.style.display = "grid";
     })
@@ -21,6 +24,11 @@ function initialize() {
             }
         })
     });
+}
+
+function submitBtnClick (event) {
+    event.preventDefault();
+    return console.log ("Form Submitted");
 }
 
 initialize();
