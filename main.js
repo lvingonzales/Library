@@ -8,9 +8,16 @@ const CLOSE_BUTTONS = document.querySelectorAll(".close-button");
 const SUBMIT_BOOK = document.querySelector("#submit-button")
 const MY_LIBRARY = [];
 const INPUTS = document.querySelectorAll("input");
-const DESCRIPTION = document.querySelector(".description")
+const DESCRIPTION = document.querySelector(".description");
+const DELETE_WRAPPER = document.createElement("div");
+DELETE_WRAPPER.classList.add ("delete-wrapper")
+const DELETE_BOOKS = document.createElement("img");
+DELETE_BOOKS.classList.add ("delete-button")
+DELETE_WRAPPER.appendChild(DELETE_BOOKS);
+const checkIfValid = (element) => element;
 
 let coverParagraphs = new Array(5);
+let isValid = new Array(4);
 
 let currentId = 0;
 
@@ -19,8 +26,16 @@ function initialize() {
 
     SUBMIT_BOOK.addEventListener("click", submitBtnClick, false);
     SUBMIT_BOOK.addEventListener("click", () => {
-        if (!INPUTS.forEach(element => element.validity.valid)) {
-            return
+        for (let i = 0; i < isValid.length; i++) {
+            if (INPUTS[i].validity.valid){
+                isValid[i] = true;
+            } else {
+                isValid[i] = false;
+            }
+        }
+
+        if (!isValid.every(checkIfValid)) {
+            return;
         } else {
             AppendDataToObject();
         }
@@ -44,7 +59,6 @@ function initialize() {
 
 function submitBtnClick (event) {
     event.preventDefault();
-    return console.log ("Form Submitted");
 }
 
 initialize();
@@ -61,7 +75,6 @@ function Book(id, name, author, year, genre, description) {
         for (let i = 0; i < coverParagraphs.length; i++ ){
             coverParagraphs[i] = document.createElement('p');
             coverParagraphs[i].innerText = coverInfo[i];
-            
         }
     }
 }
@@ -70,6 +83,7 @@ function addBookToLibrary () {
     let coverDiv = document.createElement("div");
     MY_LIBRARY[currentId].printCoverText();
     coverDiv.classList.add ("white-font", "book-cover");
+    coverDiv.appendChild(DELETE_WRAPPER);
     coverParagraphs.forEach(element => {
         coverDiv.appendChild(element);
     });

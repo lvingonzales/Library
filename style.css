@@ -27,8 +27,8 @@ body {
     border-right: 1px solid white;
     display: grid;
     grid-template-columns: repeat(4, minmax(2rem, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(5rem, 24rem));
-    overflow: auto;
+    grid-auto-rows: 24rem;
+    overflow: scroll;
     gap: 2rem;
 }
 
