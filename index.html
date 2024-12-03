@@ -22,13 +22,32 @@
             <div class="form-wrapper">
                 <form action="" method="post" class="new-form">
                     <div class="book-info">
-                        BOOK INFO
+                        <div>
+                            <label for="name">Enter book name:</label>
+                            <input type="text" name="name" id="name" class="white-font" required="required" autocomplete="off"/>
+                        </div>
+
+                        <div>
+                            <label for="author">Enter book author:</label>
+                            <input type="text" name="author" id="author" class="white-font" required="required" autocomplete="off"/>
+                        </div>
+
+                        <div>
+                            <label for="genre">Enter book genre:</label>
+                            <input type="text" name="genre" id="genre" class="white-font" required="required" autocomplete="off"/>
+                        </div>
+
+                        <div>
+                            <label for="year">Enter release year:</label>
+                            <input type="text" name="year" id="year" class="white-font" required="required" maxlength="4" autocomplete="off"/>
+                        </div>
                     </div>
                     <div class="book-desc">
-                        BOOK DESC
+                        <label for="description" class="description-label">Enter the Description:</label>
+                        <textarea name="description" id="description" class="white-font description" maxlength="250" autocomplete="off"></textarea>
                     </div>
                     <div class="submit">
-                        <button type="submit" class="library-button" id="submit-button">SUBMIT</button>
+                        <button type="submit" class="library-button white-font" id="submit-button">SUBMIT</button>
                     </div>
                 </form>
             </div>

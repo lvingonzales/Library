@@ -17,7 +17,7 @@ body {
     grid-template-rows: min-content 1fr;
     height: 90vh;
     margin: 2rem;
-    border: 5px solid;
+    border: calc(1rem/3) solid;
 }
 
 .bookshelf {
@@ -35,19 +35,23 @@ body {
 
 .library-button {
     cursor: pointer;
-    width: 10rem;
+    width: clamp(1rem, 10vw, 10rem);
     height: 2rem;
     font: 500 1.2rem "Roboto";
     background-color: transparent;
     border: 1px solid white;
     border-radius: 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .add-book {
     margin: 0.5rem;
 }
 
-.add-book:hover {
+.add-book:hover,
+.library-button:hover {
     background-color: white;
     color: black
 }
@@ -56,7 +60,6 @@ body {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     padding: 1rem;
-    background-color: grey;
     display: grid;
     grid-template-columns: repeat(8, minmax(1rem, 1fr));
     grid-template-rows: repeat(8, minmax(1rem, 1fr));
@@ -91,10 +94,44 @@ body {
 
 .book-info {
     grid-area: 1 / 1 / 4 / 9;
+    display: grid;
+    grid-template-rows: auto;
+    align-items: center;
+}
+
+.book-info > div {
+    display: grid;
+}
+
+.book-info > div > input {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 1rem;
+    height: clamp(0.5rem, 1.5rem, 2rem);
+    width: max(50%, 85%);
+    padding-left: 1rem;
+    font-weight: 600;
 }
 
 .book-desc {
     grid-area: 4 / 1 / 8 / 9;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.description-label {
+    grid-area: 1 / 1 / 2 / 3;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.description {
+    grid-area: 2 / 1 / 8 / 8;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 1rem;
+    padding: 0.5rem;
 }
 
 .submit {
