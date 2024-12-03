@@ -7,8 +7,9 @@ const ADD_BOOK = document.querySelector(".add-book");
 const CLOSE_BUTTONS = document.querySelectorAll(".close-button");
 const SUBMIT_BOOK = document.querySelector("#submit-button")
 const MY_LIBRARY = [];
+const INPUTS = document.querySelectorAll("input");
+const DESCRIPTION = document.querySelector(".description")
 
-let coverDiv = document.createElement("div");
 let coverParagraphs = new Array(5);
 
 let currentId = 0;
@@ -17,6 +18,13 @@ function initialize() {
     BOOK_FORM.style.display = "none";
 
     SUBMIT_BOOK.addEventListener("click", submitBtnClick, false);
+    SUBMIT_BOOK.addEventListener("click", () => {
+        if (!INPUTS.forEach(element => element.validity.valid)) {
+            return
+        } else {
+            AppendDataToObject();
+        }
+    });
     
     ADD_BOOK.addEventListener("click", () => {
         BOOK_FORM.style.display = "grid";
@@ -30,6 +38,7 @@ function initialize() {
         })
     });
     MY_LIBRARY[currentId] = new Book(currentId, "Liam's Lullaby", "Liam Gonzales", "2024",  "Casual", "")
+    addBookToLibrary();
     currentId++;
 }
 
@@ -49,19 +58,31 @@ function Book(id, name, author, year, genre, description) {
     this.description = description;
     this.printCoverText = function () {
         let coverInfo = Object.values(this);
-        console.log(coverInfo);
         for (let i = 0; i < coverParagraphs.length; i++ ){
             coverParagraphs[i] = document.createElement('p');
             coverParagraphs[i].innerText = coverInfo[i];
-            coverDiv.appendChild(coverParagraphs[i])
+            
         }
     }
 }
 
 function addBookToLibrary () {
-    MY_LIBRARY[0].printCoverText();
+    let coverDiv = document.createElement("div");
+    MY_LIBRARY[currentId].printCoverText();
     coverDiv.classList.add ("white-font", "book-cover");
-    BOOKSHELF.appendChild(coverDiv);
+    coverParagraphs.forEach(element => {
+        coverDiv.appendChild(element);
+    });
+    BOOKSHELF.appendChild(coverDiv);    
 }
 
-addBookToLibrary();
+function AppendDataToObject() {
+    MY_LIBRARY[currentId] = new Book(currentId, INPUTS[0].value, INPUTS[1].value, INPUTS[2].value, INPUTS[3].value, DESCRIPTION.value);
+    addBookToLibrary();
+    currentId++;
+
+    INPUTS.forEach(element => {
+        element.value = "";
+    });
+}
+
