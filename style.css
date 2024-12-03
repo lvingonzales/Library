@@ -33,15 +33,18 @@ body {
     margin-right: 1rem;
 }
 
-.add-book {
+.library-button {
     cursor: pointer;
-    margin: 0.5rem;
     width: 10rem;
     height: 2rem;
     font: 500 1.2rem "Roboto";
     background-color: transparent;
     border: 1px solid white;
     border-radius: 1rem;
+}
+
+.add-book {
+    margin: 0.5rem;
 }
 
 .add-book:hover {
@@ -73,4 +76,29 @@ body {
 .close-wrapper{
     align-self: center;
     justify-self: center;
+}
+
+.form-wrapper {
+    grid-area: 1 / 2 /9 / 9;
+}
+
+.new-form {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(8, minmax(1rem, 1fr));
+    grid-template-rows: repeat(8, minmax(1rem, 1fr));
+}
+
+.book-info {
+    grid-area: 1 / 1 / 4 / 9;
+}
+
+.book-desc {
+    grid-area: 4 / 1 / 8 / 9;
+}
+
+.submit {
+    align-self: center;
+    justify-self: center;
+    grid-area: 8 / 6 / 9 / 9;
 }

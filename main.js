@@ -8,7 +8,7 @@ const CLOSE_BUTTONS = document.querySelectorAll(".close-button");
 const MY_LIBRARY = [];
 
 function initialize() {
-    BOOK_FORM.style.display = "none";
+    //BOOK_FORM.style.display = "none";
 
     ADD_BOOK.addEventListener("click", () => {
         BOOK_FORM.style.display = "grid";
