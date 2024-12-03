@@ -14,7 +14,7 @@ let coverParagraphs = new Array(5);
 let currentId = 0;
 
 function initialize() {
-    //BOOK_FORM.style.display = "none";
+    BOOK_FORM.style.display = "none";
 
     SUBMIT_BOOK.addEventListener("click", submitBtnClick, false);
     

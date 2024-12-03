@@ -163,6 +163,7 @@ label {
 }
 
 .book-cover {
+    cursor: pointer;
     background-color: #64646425;
     display: grid;
     grid-template-rows: min-content 1fr min-content min-content min-content;
