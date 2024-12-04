@@ -15,7 +15,6 @@ const DESCRIPTION = document.querySelector(".description");
 const checkIfValid = (element) => element;
 
 let bookCovers = [];
-let deleteWrappers = [];
 let deleteButtons = [];
 let currentPop = null;
 let coverParagraphs = new Array(4);
@@ -57,11 +56,11 @@ function initialize() {
     addBookToLibrary();
 }
 
+initialize();
+
 function submitBtnClick (event) {
     event.preventDefault();
 }
-
-initialize();
 
 function Book(name, author, year, genre, description) {
     this.name = name;
