@@ -193,9 +193,20 @@ label {
     text-overflow: ellipsis;
 }
 
-.delete-wrapper {
+.button-wrapper {
     display: grid;
-    align-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.read-button {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    padding: 2px;
+    border: 2px solid white;
+    border-radius: 50%;
+    justify-self: right;
 }
 
 .delete-button {
