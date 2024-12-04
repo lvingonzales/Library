@@ -88,17 +88,17 @@ function addBookToLibrary () {
     MY_LIBRARY[currentPop].parentDiv = bookCovers[currentPop];
     BOOKSHELF.appendChild(bookCovers[currentPop]);
 
-    addDeleteButton();
+    addCoverButtons();
 
     coverParagraphs.forEach(element => {
         bookCovers[currentPop].appendChild(element);
     });  
 }
 
-function addDeleteButton() {
-    let DELETE_WRAPPER = document.createElement("div");
-    DELETE_WRAPPER.classList.add("delete-wrapper");
-    bookCovers[currentPop].appendChild(DELETE_WRAPPER);
+function addCoverButtons() {
+    let BUTTON_WRAPPER = document.createElement("div");
+    BUTTON_WRAPPER.classList.add("button-wrapper");
+    bookCovers[currentPop].appendChild(BUTTON_WRAPPER);
 
     let DELETE_BUTTON = (document.createElement("img"));
     DELETE_BUTTON.classList.add("delete-button");
@@ -107,7 +107,31 @@ function addDeleteButton() {
     DELETE_BUTTON.addEventListener("click", () => {
         deleteBook(deleteButtons.indexOf(DELETE_BUTTON));
     });
-    DELETE_WRAPPER.appendChild(DELETE_BUTTON);
+    BUTTON_WRAPPER.appendChild(DELETE_BUTTON);
+
+    let READ_TOGGLE = document.createElement("img");
+    READ_TOGGLE.classList.add ("read-button");
+    READ_TOGGLE.src = "./images/utility/check-empty.svg";
+    READ_TOGGLE.setAttribute("value", "unread");
+    READ_TOGGLE.addEventListener ("click", () => {
+        if (READ_TOGGLE.getAttribute("value") === "unread"){
+            READ_TOGGLE.setAttribute("value", "read");
+            READ_TOGGLE.src = "./images/utility/Check-filled.svg";
+            READ_TOGGLE.style.borderColor = "#06cb00";
+        } else {
+            READ_TOGGLE.setAttribute("value", "unread");
+            READ_TOGGLE.src = "./images/utility/check-empty.svg";
+            READ_TOGGLE.style.borderColor = "#e8eaed";
+        }
+    });
+    READ_TOGGLE.addEventListener ( "mouseover", () => {
+        if (READ_TOGGLE.getAttribute("value") === "unread") {
+            READ_TOGGLE.style.borderColor = "#06cb00";
+        } else {
+            READ_TOGGLE.style.borderColor = "#eb1904";
+        }
+    })
+    BUTTON_WRAPPER.appendChild(READ_TOGGLE);
 }
 
 function setId() {
@@ -133,6 +157,7 @@ function deleteBook (index) {
         MY_LIBRARY[index].parentDiv.remove();
         MY_LIBRARY.splice(index, 1);
         deleteButtons.splice(index, 1);
+        bookCovers.splice(index, 1);
     } else {
         return;
     }
