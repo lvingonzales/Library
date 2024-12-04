@@ -55,9 +55,6 @@ function initialize() {
 
     MY_LIBRARY.push (new Book("Liam's Lullaby", "Liam Gonzales", "2024",  "Casual", ""));
     addBookToLibrary();
-
-    MY_LIBRARY.push (new Book("Liam's Lullaby", "Liam Gonzales", "2024",  "Casual", ""));
-    addBookToLibrary();
 }
 
 function submitBtnClick (event) {
@@ -92,23 +89,26 @@ function addBookToLibrary () {
     MY_LIBRARY[currentPop].parentDiv = bookCovers[currentPop];
     BOOKSHELF.appendChild(bookCovers[currentPop]);
 
-    let DELETE_WRAPPER = document.createElement("div");
-    DELETE_WRAPPER.classList.add ("delete-wrapper")
-    bookCovers[currentPop].appendChild(DELETE_WRAPPER);
-
-    let DELETE_BUTTON = (document.createElement("img"));
-    DELETE_BUTTON.classList.add ("delete-button");
-    DELETE_BUTTON.src = "./images/utility/trash.svg";
-    DELETE_BUTTON.setAttribute("value", currentPop);
-    deleteButtons.push (DELETE_BUTTON);
-    DELETE_BUTTON.addEventListener("click", () => {
-        deleteBook(deleteButtons.indexOf(DELETE_BUTTON))
-    });
-    DELETE_WRAPPER.appendChild(DELETE_BUTTON);
+    addDeleteButton();
 
     coverParagraphs.forEach(element => {
         bookCovers[currentPop].appendChild(element);
     });  
+}
+
+function addDeleteButton() {
+    let DELETE_WRAPPER = document.createElement("div");
+    DELETE_WRAPPER.classList.add("delete-wrapper");
+    bookCovers[currentPop].appendChild(DELETE_WRAPPER);
+
+    let DELETE_BUTTON = (document.createElement("img"));
+    DELETE_BUTTON.classList.add("delete-button");
+    DELETE_BUTTON.src = "./images/utility/trash.svg";
+    deleteButtons.push(DELETE_BUTTON);
+    DELETE_BUTTON.addEventListener("click", () => {
+        deleteBook(deleteButtons.indexOf(DELETE_BUTTON));
+    });
+    DELETE_WRAPPER.appendChild(DELETE_BUTTON);
 }
 
 function setId() {
@@ -119,10 +119,6 @@ function setId() {
     }
     
     MY_LIBRARY[currentPop].id = currentPop;
-}
-
-function getId () {
-
 }
 
 function AppendDataToObject() {
