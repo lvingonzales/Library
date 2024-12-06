@@ -209,6 +209,10 @@ label {
     justify-self: right;
 }
 
+.read-button:hover {
+    border-color: #06cb00;
+}
+
 .delete-button {
     width: 2rem;
     height: 2rem;
