@@ -20,6 +20,26 @@ let currentPop = null;
 let coverParagraphs = new Array(4);
 let isValid = new Array(4);
 
+class Book {
+    constructor(name, author, year, genre, description){
+        this.name = name;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+        this.description = description;
+        this.id;
+        this.parentDiv;
+    }
+
+    printCoverText () {
+        let coverInfo = Object.values(this);
+        for (let i = 0; i < coverParagraphs.length; i++ ){
+            coverParagraphs[i] = document.createElement('p');
+            coverParagraphs[i].innerText = coverInfo[i];
+        }
+    }
+}
+
 function initialize() {
     BOOK_FORM.style.display = "none";
 
@@ -62,23 +82,6 @@ function submitBtnClick (event) {
     event.preventDefault();
 }
 
-function Book(name, author, year, genre, description) {
-    this.name = name;
-    this.author = author;
-    this.year = year;
-    this.genre = genre;
-    this.description = description;
-    this.id;
-    this.parentDiv;
-    this.printCoverText = function () {
-        let coverInfo = Object.values(this);
-        for (let i = 0; i < coverParagraphs.length; i++ ){
-            coverParagraphs[i] = document.createElement('p');
-            coverParagraphs[i].innerText = coverInfo[i];
-        }
-    }
-}
-
 function addBookToLibrary () {
     setId();
     MY_LIBRARY[currentPop].printCoverText();
@@ -117,20 +120,11 @@ function addCoverButtons() {
         if (READ_TOGGLE.getAttribute("value") === "unread"){
             READ_TOGGLE.setAttribute("value", "read");
             READ_TOGGLE.src = "./images/utility/Check-filled.svg";
-            READ_TOGGLE.style.borderColor = "#06cb00";
         } else {
             READ_TOGGLE.setAttribute("value", "unread");
             READ_TOGGLE.src = "./images/utility/check-empty.svg";
-            READ_TOGGLE.style.borderColor = "#e8eaed";
         }
     });
-    READ_TOGGLE.addEventListener ( "mouseover", () => {
-        if (READ_TOGGLE.getAttribute("value") === "unread") {
-            READ_TOGGLE.style.borderColor = "#06cb00";
-        } else {
-            READ_TOGGLE.style.borderColor = "#eb1904";
-        }
-    })
     BUTTON_WRAPPER.appendChild(READ_TOGGLE);
 }
 
